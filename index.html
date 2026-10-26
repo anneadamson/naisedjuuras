@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Riskigrupp: naised juuras</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Archivo:wght@400;500;600&display=swap">
+<style>
+/* Lava pimedas saalis: üks soe valgusvihk ülalt, üks jahe altpoolt.
+   Kava on vihu all ajateljena, number on ainus koht, kus värv kannab infot. */
+:root{
+  color-scheme: light;
+  --ground:#F4D9DF;        /* roosa paber — maa */
+  --ground-2:#FDF0F3;      /* kaartide ja graafiku pind */
+  --ground-3:#EFCCD6;
+  --line:#E3BAC7;
+  --line-2:#CC94A8;
+  --ink:#3A1B28;           /* süvavein */
+  --ink-2:#6B3B4F;
+  --muted:#80566A;
+  --sara:#B02A55;          /* sära: pealkirjad, rõhud, nupp */
+  --sara-dim:#D1500F;      /* seeria 2023 — valideeritud roosal pinnal */
+  --vari:#6250D6;          /* seeria 2021 */
+  --lahtine:#0E8F86;       /* lahtised kohad — ainus koht, kus seda värvi on */
+  --display:"Bodoni Moda",Didot,Georgia,serif;
+  --body:"Archivo","Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* valgusvihud — kaks pehmet gradienti, mitte pilt */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(64rem 46rem at 14% -12%, rgba(255,203,138,.42), transparent 64%),
+    radial-gradient(56rem 44rem at 98% 8%, rgba(236,128,172,.34), transparent 68%),
+    radial-gradient(64rem 52rem at 44% 106%, rgba(150,120,220,.18), transparent 72%);
+}
+.page{position:relative;z-index:1;max-width:60rem;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 5rem}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--sara)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sara);outline-offset:3px}
+.lahtine{color:var(--lahtine);font-weight:600;font-family:var(--body);
+  font-size:.92em;letter-spacing:.01em;white-space:normal}
+
+/* ——— avang ——— */
+.hero{padding-block:4.5rem 0;display:grid;grid-template-columns:minmax(0,1fr) 210px;
+  gap:1rem 2.5rem;align-items:center}
+.herokuju{width:100%;max-width:210px}
+.herokuju svg{display:block;width:100%;height:auto}
+@media (max-width:48rem){
+  .hero{grid-template-columns:1fr}
+  .herokuju{max-width:132px;margin-top:.5rem}
+}
+}
+.kicker{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--sara);font-weight:600;display:block;margin-bottom:1.6rem}
+.kicker .rl{display:inline-block;width:2.4rem;height:1px;background:var(--sara);
+  vertical-align:middle;margin-right:.8rem;opacity:.7}
+.hero h1{font-size:clamp(2.6rem,9vw,5.6rem);line-height:.98;letter-spacing:-.015em}
+.hero h1 em{font-style:italic;color:var(--sara);font-weight:400}
+.hero .alt{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,3.3vw,1.7rem);
+  color:var(--ink-2);margin-top:1.4rem;max-width:34ch;line-height:1.35}
+.hero .lede{margin-top:2rem;max-width:62ch;color:var(--ink-2);font-size:1.03rem}
+.hero .lede b{color:var(--ink);font-weight:500}
+.hero .lede+.lede{margin-top:.9rem}
+.fakta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.4rem;list-style:none;padding:0}
+.fakta li{border:1px solid var(--line-2);border-radius:999px;padding:.42rem 1rem;
+  font-size:.82rem;color:var(--ink-2);display:flex;gap:.5rem;align-items:baseline;
+  background:rgba(255,255,255,.58)}
+.fakta li span:first-child{color:var(--muted);font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase}
+
+/* ——— sektsioonid ——— */
+section{margin-top:5.5rem}
+.pea{display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:.9rem}
+.pea h2{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.1}
+.pea .nr{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  font-weight:600}
+section>.sisse{margin-top:1.3rem;max-width:62ch;color:var(--ink-2)}
+
+/* ——— kava ——— */
+.kava{margin-top:2.2rem;display:flex;flex-direction:column}
+.rida{display:grid;grid-template-columns:6.8rem 1fr;gap:0 2rem;
+  padding:1.8rem 0 1.8rem;border-top:1px solid var(--line);position:relative;
+  transition:background .18s ease}
+.rida:first-child{border-top:0}
+.rida:hover{background:rgba(255,255,255,.5)}
+.rida .kell{font-size:.88rem;font-weight:600;color:var(--sara);
+  font-variant-numeric:tabular-nums;padding-top:.45rem;white-space:nowrap}
+.mark{display:block;width:84px;height:84px;margin-top:1rem;color:var(--sara)}
+.mark svg{display:block;width:100%;height:100%}
+.tsitaat{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,2.8vw,1.5rem);
+  line-height:1.3;color:var(--sara);margin-top:1.2rem;padding-left:1.1rem;
+  border-left:2px solid var(--sara);max-width:30ch}
+.rida .vorm{font-size:.64rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;display:block;margin-bottom:.55rem}
+.rida h3{font-size:clamp(1.3rem,3.2vw,1.72rem);line-height:1.14;letter-spacing:-.01em}
+.rida .tekst{margin-top:.85rem;color:var(--ink-2);max-width:56ch;font-size:.97rem}
+.rida .tekst i{color:var(--ink)}
+.rida .kes{margin-top:1.1rem;font-size:.91rem;color:var(--ink-2);max-width:56ch}
+.rida .kes b{color:var(--ink);font-weight:600}
+.rida .kes .mod{display:block;margin-top:.3rem;color:var(--muted)}
+.rida .kes .mod b{color:var(--ink-2);font-weight:600}
+/* pausid — madalam, vaiksem, kaldkirjas */
+.rida.paus{padding:1rem 0;align-items:baseline}
+.rida.paus .nimi{font-family:var(--display);font-style:italic;font-size:1.05rem;
+  color:var(--muted)}
+.rida.paus .tekst{margin-top:.4rem;font-size:.9rem;color:var(--muted)}
+/* saali hääl — kitsas, märgistatud */
+.rida.haal .nimi{font-size:1rem;font-weight:500;color:var(--ink-2);font-family:var(--body)}
+.rida.haal{padding:1.05rem 0}
+.rida.haal .tekst{margin-top:.35rem;font-size:.9rem}
+@media (max-width:40rem){
+  .rida{grid-template-columns:1fr;gap:.5rem}
+  .rida .kell{padding-top:0}
+}
+
+/* ——— numbrid ——— */
+.seis{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-top:2rem}
+.seis div{background:var(--ground-2);padding:1.3rem 1.35rem}
+.seis .arv{font-family:var(--display);font-size:2.5rem;line-height:1;color:var(--sara);
+  font-variant-numeric:tabular-nums;display:block}
+.seis .sel{display:block;margin-top:.6rem;font-size:.88rem;color:var(--ink-2)}
+figure{margin:2.4rem 0 0;background:var(--ground-2);border:1px solid var(--line);
+  padding:1.6rem 1.4rem 1.3rem}
+figure figcaption{font-size:.95rem;color:var(--ink);font-weight:500;margin-bottom:.35rem}
+figure .alam{font-size:.86rem;color:var(--muted);margin-bottom:1.5rem}
+.legend{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:1.1rem;font-size:.82rem;
+  color:var(--ink-2)}
+.legend span{display:flex;gap:.5rem;align-items:center}
+.legend i{width:10px;height:10px;border-radius:50%;display:block}
+.graaf{overflow-x:auto}
+.graaf svg{display:block;min-width:21rem;max-width:100%;height:auto}
+.vahe{margin-top:1.7rem;border-top:1px solid var(--line);padding-top:1.3rem;
+  font-size:.93rem;color:var(--ink-2)}
+.vahe b{color:var(--sara);font-weight:600}
+
+/* ——— aastad ——— */
+.aastad{list-style:none;padding:0;margin:2.2rem 0 0}
+.aastad li{display:grid;grid-template-columns:5.5rem 1fr;gap:0 2rem;
+  padding:1.25rem 0;border-top:1px solid var(--line)}
+.aastad .a{font-size:.8rem;font-weight:600;color:var(--sara);
+  font-variant-numeric:tabular-nums;padding-top:.15rem}
+.aastad .t{font-weight:600;color:var(--ink);display:block;font-size:1.02rem}
+.aastad .d{display:block;margin-top:.35rem;color:var(--ink-2);font-size:.94rem;max-width:56ch}
+@media (max-width:40rem){
+  .aastad li{grid-template-columns:1fr;gap:.3rem}
+  .aastad .a{padding-top:0}
+}
+.allikad{margin-top:1.6rem;font-size:.82rem;color:var(--muted)}
+.allikad a{color:var(--muted);text-decoration-color:var(--line-2)}
+
+/* ——— pilet ——— */
+.pilet{margin-top:5.5rem;border:1px solid var(--line-2);background:
+  linear-gradient(135deg,rgba(255,203,138,.45),rgba(150,120,220,.14) 60%,transparent),
+  var(--ground-2);padding:2.4rem 2rem}
+.pilet h2{font-size:clamp(1.7rem,4.4vw,2.4rem);line-height:1.08}
+.pilet p{margin-top:1rem;max-width:54ch;color:var(--ink-2)}
+.pilet .hind{margin-top:1.6rem;font-family:var(--display);font-size:1.5rem;color:var(--sara)}
+.nupp{display:inline-block;margin-top:1.6rem;background:var(--sara);color:#FFF;
+  text-decoration:none;padding:.85rem 1.7rem;font-weight:600;font-size:.84rem;
+  letter-spacing:.12em;text-transform:uppercase;border-radius:2px}
+.nupp:hover{background:var(--ink)}
+.nupp .lahtine{color:#FFF;font-size:1em}
+footer{margin-top:4.5rem;border-top:1px solid var(--line);padding-top:1.4rem;
+  font-size:.86rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.5rem 2rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<meta name="description" content="Naised juuras võrgustiku aastakonverents 2026 „Riskigrupp: naised juuras“. 25. november, Estonian Business School aula 413. Pilet 35 € Fientast, sisaldab lõunat.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Riskigrupp: naised juuras">
+<meta property="og:description" content="Elu ja kutse varjud ning sära. 25. november 2026, Estonian Business School.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Event",
+ "name":"Riskigrupp: naised juuras — elu ja kutse varjud ning sära",
+ "description":"Naised juuras võrgustiku aastakonverents 2026.",
+ "startDate":"2026-11-25T09:30",
+ "endDate":"2026-11-25T17:00",
+ "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+ "inLanguage":"et",
+ "location":{"@type":"Place","name":"Estonian Business School, aula 413","address":"Tallinn, Eesti"},
+ "offers":{"@type":"Offer","price":"35","priceCurrency":"EUR","url":"https://fienta.com/et/210469"},
+ "organizer":{"@type":"Organization","name":"Naised juuras","email":"anne.adamson@techxlegal.com"}}
+</script>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <div>
+  <span class="kicker"><span class="rl"></span>Naised juuras võrgustiku aastakonverents 2026</span>
+  <h1>Riskigrupp:<br>naised <em>juuras</em></h1>
+  <p class="alt">Elu ja kutse varjud ning sära.</p>
+  <p class="lede"><b>Naisadvokaatidest on saanud „Naised juuras", aga iga-aastane inspiratsioonikonverents toimub siiski!</b></p>
+  <p class="lede">Meil on au kutsuda Teid — naisi, kes tegutsevad juura valdkonnas — osalema meie traditsioonilisel iga-aastasel inspiratsioonikonverentsil.</p>
+  <p class="lede">Üks päev aastas, kus naised juuras on õed ning toimub õdede kogunemine. Räägime sellest, mida me ootame, kardame, loodame, teeme ning kui julged me oleme ja kui tähtis on meie roll kogu meie ümber olevas ökosüsteemis.</p>
+  <p class="lede">Räägime ka sellest, miks nii targad naised tihti siiski tunnevad nagu kõik juhtub neile mitte nemad ei otsusta ise. Tööl, kodus, elus.</p>
+  <p class="lede"><b>Aga räägime sellest.</b></p>
+  <ul class="fakta">
+    <li><span>Kuupäev</span><span>25. november 2026</span></li>
+    <li><span>Koht</span><span>Estonian Business School, aula 413</span></li>
+    <li><span>Kava</span><span>09.30–17.00</span></li>
+    <li><span>Pilet</span><span>35 €</span></li>
+  </ul>
+  </div>
+
+  <div class="herokuju" aria-hidden="true">
+    <svg viewBox="0 0 200 320">
+      <g fill="none" stroke="var(--sara)" stroke-width="2.2" stroke-linecap="round" opacity=".38">
+        <path d="M16 52 C25 44 36 45 44 53"></path>
+        <path d="M10 84 C19 76 30 77 38 85"></path>
+        <path d="M20 116 C29 108 40 109 48 117"></path>
+      </g>
+      <ellipse cx="114" cy="74" rx="47" ry="53" fill="var(--sara)"></ellipse>
+      <ellipse cx="95" cy="53" rx="10" ry="14" fill="var(--ground-2)" opacity=".38"
+               transform="rotate(-28 96 54)"></ellipse>
+      <path d="M108 124 L120 124 L114 134 Z" fill="var(--sara)"></path>
+      <path d="M114 134 C108 172 136 192 121 222 C109 248 71 256 66 292"
+            fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </div>
+</header>
+
+<section id="kava">
+  <div class="pea"><h2>Päevakava</h2><span class="nr">Viisteist plokki</span></div>
+
+  <div class="kava">
+
+    <div class="rida">
+      <div class="kell">09.30
+          <span class="mark" role="img" aria-label="Üksteist intervjueeritud naisadvokaati"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20" r="3.2"></circle><circle cx="25" cy="20" r="3.2"></circle><circle cx="40" cy="20" r="3.2"></circle><circle cx="55" cy="20" r="3.2"></circle><circle cx="10" cy="35" r="3.2"></circle><circle cx="25" cy="35" r="3.2"></circle><circle cx="40" cy="35" r="3.2"></circle><circle cx="55" cy="35" r="3.2"></circle><circle cx="10" cy="50" r="3.2"></circle><circle cx="25" cy="50" r="3.2"></circle><circle cx="40" cy="50" r="3.2"></circle></svg></span></div>
+      <div>
+        <span class="vorm">Dialoogpaneel · 40 min</span>
+        <h3>Üks uuring ja üks elu, kõrvuti</h3>
+        <p class="tekst">Gabriel Männe küsis üheteistkümnelt Eesti suurima büroo naisadvokaadilt, miks naisi partnerite laua taga ei ole. Vastus ei olnud see, mida oodati: <i>see ei ole valik, see on struktuur.</i> Partneriks pürgimise aastad langevad kokku pere loomise aastatega, ja lapsehoolduspuhkus ei võta ära ainult aega — ta võtab ära kliendid, nähtavuse ja tee edasi.</p>
+        <p class="tekst">Imbi Jürgen arutab sel teemal Gabrieliga, et kuidas see päriselus välja näeb.</p>
+        <p class="kes"><b>Gabriel Männe</b>, uuringu autor &nbsp;·&nbsp; <b>Imbi Jürgen</b>, Eesti Advokatuuri juhatuse esimees
+          <span class="mod">Moderaator <b>Katariina Kuum</b>, vandeadvokaat SORAINEN</span></p>
+      </div>
+    </div>
+    <div class="rida haal">
+      <div class="kell">10.10</div>
+      <div>
+        <span class="vorm">Saali hääl · 5 min</span>
+        <p class="nimi">Interaktiivne vahepala</p>
+        <p class="tekst">Anonüümne küsitlus. Vastad telefonist, ekraanil näeb ainult numbreid — ja need numbrid oleme meie.</p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">10.15
+          <span class="mark" role="img" aria-label="Signaal, mis kustub"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8.0" y1="54" x2="8.0" y2="10"></line><line x1="16.5" y1="54" x2="16.5" y2="16"></line><line x1="25.0" y1="54" x2="25.0" y2="23"></line><line x1="33.5" y1="54" x2="33.5" y2="30"></line><line x1="42.0" y1="54" x2="42.0" y2="37"></line><line x1="50.5" y1="54" x2="50.5" y2="44"></line><line x1="59.0" y1="54" x2="59.0" y2="49"></line></svg></span></div>
+      <div>
+        <span class="vorm">Inspiratsioonietteaste · 45 min</span>
+        <h3>Läbipõlemine ei tule äkki</h3>
+        <p class="tekst">Millal see päriselt algab? Mida keha ütleb enne, kui pea aru saab? Ja miks on just meie kutseala see, kes neid märke kõige osavamalt eirab?</p>
+        <p class="kes"><b>Ann Leen Mahhov</b>, üldarst ja läbipõlemise spetsialist</p>
+      </div>
+    </div>
+    <div class="rida paus">
+      <div class="kell">11.00</div>
+      <div>
+        <p class="nimi">Paus</p>
+      </div>
+    </div>
+    <div class="rida haal">
+      <div class="kell">11.15</div>
+      <div>
+        <span class="vorm">Saali hääl · 5 min</span>
+        <p class="nimi">Soojendus järgmiseks paneeliks</p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">11.20
+          <span class="mark" role="img" aria-label="Kõrge sissetulek, väike vara"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="8" width="13" height="48"></rect><rect x="41" y="46" width="13" height="10"></rect></svg></span></div>
+      <div>
+        <span class="vorm">Paneel · 40 min</span>
+        <h3>Julge elu, millel pole piire</h3>
+        <p class="tekst">Kolm naist, kes ei oota palgapäeva. Ja üks ebamugav number, millest juristide seas ei räägita: raamat <i>The Millionaire Next Door</i> liigitab juristid ja arstid vara alakogujate hulka — kõrge sissetulek, väike vara. Tarbimise lõks: kallid riided, kallid autod, õige piirkond. Tulemus on see, et aktiivne töö jääb ainsaks sissetulekuks ja töötada tuleb sisuliselt elu lõpuni. See ei ole naljaasi ega Eesti eripära. See on kogu maailma juristide ja arstide kalduvus.</p>
+        <p class="tsitaat">Naised, võtke oma elu enda kätesse ja investeerige.</p>
+        <p class="kes">Kinnisvaranaiste all tegutseva naistebändi <b>Valerie</b> &nbsp;·&nbsp; <b>Karolina</b> &nbsp;·&nbsp; <b>Kristel</b> &nbsp;<a href="https://www.facebook.com/kinnisvaranaised/?locale=et_EE">Kinnisvaranaised</a>
+          <span class="mod">Moderaator <b>Ilona Nurmela</b></span></p>
+      </div>
+    </div>
+    <div class="rida paus">
+      <div class="kell">12.00</div>
+      <div>
+        <p class="nimi">Lõuna</p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">12.45
+          <span class="mark" role="img" aria-label="Trepp ülespoole"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 54 H22 V40 H36 V26 H50 V12 H60"></path></svg></span></div>
+      <div>
+        <span class="vorm">Paneel · 60 min</span>
+        <h3>Juristist juhiks</h3>
+        <p class="tekst">Kolm naist, kes alustasid juristina ja juhivad täna inimesi, eelarveid ja asutusi. Küsimus ei ole, kas juristist saab juht. Küsimus on, mis juristiharidusest aitas — ja mis tuli maha jätta ning juurde õppida.</p>
+        <p class="kes"><b>Kristi Mäe</b>, PPA direktori asetäitja arenduse alal &nbsp;·&nbsp; <b>Karin Madisson</b>, Rahandusministeeriumi asekantsler &nbsp;·&nbsp; <b>Ulla Helm</b>, Veriff
+          <span class="mod">Moderaator <b>Silja Hundt</b>, MAGNUM</span></p>
+      </div>
+    </div>
+    <div class="rida haal">
+      <div class="kell">13.45</div>
+      <div>
+        <span class="vorm">Saali hääl · 15 min</span>
+        <p class="nimi">Oi-oi-oi, armastuse ja lähisuhte küsimustik…</p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">14.00
+          <span class="mark" role="img" aria-label="Kaks poolt kohtuvad"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 34 Q32 12 52 34"></path><path d="M12 34 Q32 56 52 34"></path></svg></span></div>
+      <div>
+        <span class="vorm">Inspiratsioonikõneleja · 45 min</span>
+        <h3>Armastusest ja lähisuhetest</h3>
+        <p class="kes"><b>Epp Kärsin</b></p>
+      </div>
+    </div>
+    <div class="rida paus">
+      <div class="kell">14.45</div>
+      <div>
+        <p class="nimi">Paus</p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">15.00
+          <span class="mark" role="img" aria-label="Hingamise kõver"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 C16 14 26 54 34 34 C42 14 52 54 60 34"></path></svg></span></div>
+      <div>
+        <span class="vorm">Paneel · 45 min</span>
+        <h3>Keha ja vaim, mis kannavad sind ja su elu</h3>
+        <p class="tekst">Kuidas hoida tervist siis, kui karjäär on kõige tähtsam? Fitnessguru, psühholoog ja spordifriik. Kolm teed, üks küsimus: kust nad ise alustasid ja mis tegelikult aega võttis?</p>
+        <p class="kes"><b>Reet Pärgmäe</b>, fitnessguru ja tehnoloogiajurist &nbsp;·&nbsp; <b>Liis Paemurru</b>, psühholoog &nbsp;·&nbsp; <b>Krõõt Padrik</b>, spordifriik
+          <span class="mod">Moderaator <b>Kaili Rätsepp</b>, vandeadvokaat</span></p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">15.45
+          <span class="mark" role="img" aria-label="Helilaine"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="28" x2="10" y2="40"></line><line x1="17" y1="20" x2="17" y2="48"></line><line x1="24" y1="25" x2="24" y2="43"></line><line x1="31" y1="14" x2="31" y2="54"></line><line x1="38" y1="23" x2="38" y2="45"></line><line x1="45" y1="17" x2="45" y2="51"></line><line x1="52" y1="27" x2="52" y2="41"></line><line x1="59" y1="21" x2="59" y2="47"></line></svg></span></div>
+      <div>
+        <span class="vorm">Standup · 20 min · #aastaema #aastainvestor</span>
+        <h3>Kakskümmend minutit, mille jooksul ei ole vaja midagi parandada</h3>
+        <p class="kes"><b>Liina Pulges</b></p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">16.05
+          <span class="mark" role="img" aria-label="Kaks võrdset ringi, mis kattuvad"><svg viewBox="0 0 68 68" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="34" r="16"></circle><circle cx="42" cy="34" r="16"></circle></svg></span></div>
+      <div>
+        <span class="vorm">Paneel · 45 min</span>
+        <h3>Pere ja võimudünaamika</h3>
+        <p class="tekst">Kui mõlemal vanemal on karjäär, siis kelle oma on tähtsam? Kui sa oled tööl see, kes otsustab, siis kes otsustab kodus? Ja mis juhtub, kui vastus ei meeldi kummalegi?</p>
+        <p class="kes"><b>Kadri Härginen</b>, Sorainen &nbsp;·&nbsp; <b>Karin Marozov</b>, TEGOS &nbsp;·&nbsp; <b>Anu Maria Brenner</b>, halduskohtunik
+          <span class="mod">Moderaator <b>Hanna Esko</b>, vandeadvokaat SORAINEN</span></p>
+      </div>
+    </div>
+    <div class="rida">
+      <div class="kell">16.50</div>
+      <div>
+        <span class="vorm">Kokkuvõte · 10 min</span>
+        <h3>Mida me täna kuulsime</h3>
+        <p class="kes"><b>Katariina Kuum</b>, vandeadvokaat SORAINEN</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="numbrid">
+  <div class="pea"><h2>Miks see konverents olemas on</h2><span class="nr">Advokatuuri andmed</span></div>
+  <p class="sisse">Võrgustik ei alanud konverentsist. Ta algas ühest arvust, mis ei meeldinud kellelegi: naised on pool Eesti advokatuurist, aga büroode tipus neid ei ole. Kaks aastat hiljem tegi advokatuur sama arvutuse uuesti.</p>
+
+  <div class="seis">
+    <div><span class="arv">49%</span><span class="sel">Naisi advokatuuris — ja see arv ei liikunud kahe aasta jooksul kuhugi. Liikus ainult see, mis juhtub nendega edasi.</span></div>
+    <div><span class="arv">15</span><span class="sel">Suurimat bürood käibe järgi, mille pealt arvud on tehtud.</span></div>
+    <div><span class="arv">4</span><span class="sel">Bürood, mida juhtis naine: Eversheds Sutherland Ots&amp;Co, PwC Legal, Walless, Lextal.</span></div>
+  </div>
+
+  <figure>
+    <figcaption>Naiste osakaal büroode tipus, 2021 ja 2023</figcaption>
+    <p class="alam">15 suurimat bürood. Protsent kõigist vastava rolli kandjatest.</p>
+    <div class="legend">
+      <span><i style="background:#6250D6"></i>2021</span>
+      <span><i style="background:#D1500F"></i>2023</span>
+    </div>
+    <div class="graaf">
+      <svg viewBox="0 0 560 240" role="img" aria-label="Naiste osakaal 15 suurimas büroos. Juhatustes 21 protsenti 2021. aastal ja 29 protsenti 2023. aastal. Naispartnereid 23 ja 27 protsenti. Osanike seas 25 ja 31 protsenti. Võrdluseks: naisi on advokatuuris 49 protsenti.">
+        <!-- skaala 0-49%, x = 170 + protsent * 7,3469; parem serv on 49% võrdlusjoon -->
+        <g font-family="Archivo, Arial, sans-serif" font-size="11" fill="#80566A">
+          <line x1="170" y1="30" x2="170" y2="188" stroke="#E3BAC7" stroke-width="1"></line>
+          <line x1="243.5" y1="30" x2="243.5" y2="188" stroke="#E3BAC7" stroke-width="1"></line>
+          <line x1="316.9" y1="30" x2="316.9" y2="188" stroke="#E3BAC7" stroke-width="1"></line>
+          <line x1="390.4" y1="30" x2="390.4" y2="188" stroke="#E3BAC7" stroke-width="1"></line>
+          <line x1="463.9" y1="30" x2="463.9" y2="188" stroke="#E3BAC7" stroke-width="1"></line>
+          <text x="170" y="208" text-anchor="middle">0</text>
+          <text x="243.5" y="208" text-anchor="middle">10</text>
+          <text x="316.9" y="208" text-anchor="middle">20</text>
+          <text x="390.4" y="208" text-anchor="middle">30</text>
+          <text x="463.9" y="208" text-anchor="middle">40%</text>
+        </g>
+        <!-- vorldusjoon: naisi advokatuuris 49% -->
+        <g font-family="Archivo, Arial, sans-serif">
+          <line x1="530" y1="30" x2="530" y2="188" stroke="#80566A" stroke-width="1.5" stroke-dasharray="3 4"></line>
+          <text x="530" y="20" text-anchor="end" font-size="10.5" fill="#80566A" font-weight="600">49% — naisi advokatuuris</text>
+        </g>
+        <g font-family="Archivo, Arial, sans-serif" font-size="12.5">
+          <text x="158" y="60" text-anchor="end" fill="#6B3B4F">Juhatustes</text>
+          <line x1="324.3" y1="56" x2="383.1" y2="56" stroke="#CC94A8" stroke-width="2"></line>
+          <circle cx="324.3" cy="56" r="6" fill="#6250D6" stroke="#FDF0F3" stroke-width="2"></circle>
+          <circle cx="383.1" cy="56" r="6" fill="#D1500F" stroke="#FDF0F3" stroke-width="2"></circle>
+          <text x="324.3" y="43" text-anchor="middle" fill="#80566A" font-size="11">21</text>
+          <text x="383.1" y="43" text-anchor="middle" fill="#B02A55" font-weight="600">29</text>
+          <text x="158" y="117" text-anchor="end" fill="#6B3B4F">Naispartnereid</text>
+          <line x1="339" y1="113" x2="368.4" y2="113" stroke="#CC94A8" stroke-width="2"></line>
+          <circle cx="339" cy="113" r="6" fill="#6250D6" stroke="#FDF0F3" stroke-width="2"></circle>
+          <circle cx="368.4" cy="113" r="6" fill="#D1500F" stroke="#FDF0F3" stroke-width="2"></circle>
+          <text x="339" y="100" text-anchor="middle" fill="#80566A" font-size="11">23</text>
+          <text x="368.4" y="100" text-anchor="middle" fill="#B02A55" font-weight="600">27</text>
+          <text x="158" y="174" text-anchor="end" fill="#6B3B4F">Osanike seas</text>
+          <line x1="353.7" y1="170" x2="397.8" y2="170" stroke="#CC94A8" stroke-width="2"></line>
+          <circle cx="353.7" cy="170" r="6" fill="#6250D6" stroke="#FDF0F3" stroke-width="2"></circle>
+          <circle cx="397.8" cy="170" r="6" fill="#D1500F" stroke="#FDF0F3" stroke-width="2"></circle>
+          <text x="353.7" y="157" text-anchor="middle" fill="#80566A" font-size="11">25</text>
+          <text x="397.8" y="157" text-anchor="middle" fill="#B02A55" font-weight="600">31</text>
+        </g>
+      </svg>
+    </div>
+    <p class="vahe">Ja üks arv, mis seisab üksi. 2023. aastal oli naiste käes <b>31% osalustest</b>, aga ainult <b>umbes 23% häältest</b>. Naiste osalused on väiksemad — isegi seal, kus nad on osanike laua taga, ei kaalu nende hääl sama palju. Ainult viies büroos vastab naiste hääleõigus ja kasumiosa nende osakaalule osanike seas.</p>
+  </figure>
+</section>
+
+<section id="aastad">
+  <div class="pea"><h2>Kust me tuleme</h2><span class="nr">2021 — täna</span></div>
+  <ul class="aastad">
+    <li><span class="a">2021</span><span><span class="t">Üks analüüs</span><span class="d">Naised on pool advokatuurist, aga juhatustes 21% ja partnerite seas 23%. Ilmus Äripäevas ja advokatuuri blogis.</span></span></li>
+    <li><span class="a">2021–22</span><span><span class="t">„Naised advokaadibüroode tipus"</span><span class="d">Aasta jooksul 30 intervjuud naispartneritega — et noorematel oleks eeskujud, keda vaadata.</span></span></li>
+    <li><span class="a">2022</span><span><span class="t">Advokatuuri Teemant</span><span class="d">Tunnustus naisadvokaatide kogukonna loomise eest.</span></span></li>
+    <li><span class="a">2023</span><span><span class="t">Advokaaditöö ja raha</span><span class="d">Esimene kogunemine, 14. november. Paneel karjäärivalikutest, „Minu esimesed 100 päeva" oma büroost, investeerimine ja motivatsioonikõne. Kogukond oli selleks ajaks kahe aastaga nullist üles ehitatud.</span></span></li>
+    <li><span class="a">2024</span><span><span class="t">Aasta aega hiljem</span><span class="d">28. november. „Julge tahta", statistika naistest partnerite ja juhtidena, naisadvokaat kui ettevõtja aasta hiljem, finantsvabaduse paneel, pere planeerimise paneel ja töötuba „Unista suurelt".</span></span></li>
+    <li><span class="a">2025</span><span><span class="t">Visioon 2050 — „Kuidas sa tahad, et oleks?"</span><span class="d">Kui mina olen 60 ja mu laps on 30. Neuroerisus. „Naiste karjääri toetav töökeskkond" — viis meest laval, moderaator Ilona Nurmela. „Vara, lahutus ja finantsvabadus", moderaator Liina Pulges. Lapse saamine kui läbipõlemine. Partnerlusmudelid. Toetajad UPVESTOR, Eversheds Sutherland ja Sorainen.</span></span></li>
+    <li><span class="a">Täna</span><span><span class="t">Riskigrupp</span><span class="d">Neljas kogunemine. Sel aastal ei räägi me enam klaaslaest. Räägime sellest, mis juhtub naisega, kes selle läbi lõi — ja mis see maksma läks.</span></span></li>
+  </ul>
+  <p class="allikad">Allikad: <a href="https://advokatuur.ee/et/paevakajalist/uudised/naised-advokaadiburoode-tipus-kaks-aastat-hiljem/">Eesti Advokatuur, „Naised advokaadibüroode tipus: kaks aastat hiljem"</a> · <a href="https://aastaraamat.advokatuur.ee/2023-2/tervitus-liikmetele">Advokatuuri aastaraamat 2023</a> · varasemate aastate kavad ja 2025. aasta arvud korraldajate enda materjalist. Hääleõiguse kohta annab allikas numbri ainult 2023. aasta kohta.</p>
+</section>
+
+<section class="pilet" id="pilet">
+  <h2>Tule kohale</h2>
+  <p>Pilet maksab 35 eurot, sama palju kui mullu. <b>Osalustasu sisaldab lõunat ja kohvivaheaegu.</b></p>
+  <p>Kui sa tuled kolleegiga, osta piletid ühe tellimusega — arve saab Fientast.</p>
+  <p class="hind">35 € · 25. november 2026 · Estonian Business School, aula 413</p>
+  <a class="nupp" href="https://fienta.com/et/210469?utm_source=homepage&amp;utm_medium=website">Osta pilet Fientast</a>
+</section>
+
+<section id="kellele">
+  <div class="pea"><h2>Kellele</h2><span class="nr">Loe enne pileti ostmist</span></div>
+  <p>Konverents on mõeldud ainult juura maastikul tegutsevatele naistele: advokaat, jurist, kohtunik, prokurör, notar, avalikus teenistuses töötaja või juuratudeng. Kui ostad pileti, aga ei ole naine või ei ole juuraga seotud, on korraldajatel õigus sind konverentsilt eemaldada või sisse mitte lubada.</p>
+  <p>Meedia ja ajakirjanikud ei ole teretulnud, sest arutame ka tundlikke ja privaatseid teemasid. See on kogukonna üritus, kus räägitakse avatult asjadest, mis kogukonda puudutavad.</p>
+</section>
+
+<footer>
+  <span>Naised juuras võrgustiku aastakonverents 2026</span>
+  <span>25. november 2026 · Estonian Business School, aula 413</span>
+  <span>anne.adamson@techxlegal.com</span>
+</footer>
+
+</div>
+</body>
+</html>
